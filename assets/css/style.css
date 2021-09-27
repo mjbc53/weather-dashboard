@@ -20,10 +20,18 @@ label{
     font-size: 35px;
 }
 
-.search-form{
+.bottom-border{
     border-bottom: 3px solid grey;
 }
 
-.search-div{
-    margin-bottom: 5%;
+.bottom-margin{
+    margin-bottom: 1rem;
 }
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+
+

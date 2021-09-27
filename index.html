@@ -22,19 +22,98 @@
 
         </header>
 
-        <div class="container g-0 mx-auto">
-            <div class="row g-0 ">
-                <form class="col-3 search-form">
-                    <div class="row g-0 search-div">
+        <!-- search form and display container -->
+        <div class="container g-0 mx-auto mt-3">
+            <!-- row to hold everything -->
+            <div class="row ">
+
+
+                <!-- Search form -->
+                <form class="col-3 bottom-border" id="search-form">
+                    <div class="row g-0 bottom-margin">
                         <label for="search-name" class="col mb-3">Search for a City:</label>
                         <input class="mb-3 form-control" type="text" id="search-input" name="search-name">
                         <button type="button" id="search-btn" class="col btn
                         btn-primary btn-sm">Search</button>
                     </div>
-                
                 </form>
+                
 
-                <div class="col">
+                <!-- display search city -->
+                <div class="col-9" id="current-date-forecast">
+                    <div class="col-12 border border-2 ps-2">
+                        <h2 class="bottom-margin">Atlanta</h2>
+                        <p class="bottom-margin">Temp:<span></span></p>
+                        <p class="bottom-margin">Wind<span></span></p>
+                        <p class="bottom-margin">Humidity<span></span></p>
+                        <p class="bottom-margin">UV Index:<span></span></p>
+
+                    </div>
+                </div>
+
+                <!-- Button history -->
+                <div class="col-3 mt-2" id="history">
+                    <button type="button" class="col-12 btn btn-secondary btn-sm">test</button>
+                </div>
+
+                <!-- 5 day forecast -->
+                <div class="col-9" id="daily-forecast">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-12">
+                            <h3>5-Day Forecast</h3>
+                        </div>
+                        <div class="col-2 ">
+                                <div class="card">
+                                  <h5 class="card-title">05/06/2020</h5>
+                                  <img src="./assets/images/sun-solid.svg"
+                                  width="15%" height="15%"/>
+                                  <p class="card-text">temp</p>
+                                  <p class="card-text">wind</p>
+                                  <p class="card-text">Humidity</p>
+                                </div>
+                        </div>
+                        <div class="col-2">
+                       <div class="card">
+                                  <h5 class="card-title">05/06/2020</h5>
+                                  <img src="./assets/images/sun-solid.svg"
+                                  width="15%" height="15%"/>
+                                  <p class="card-text">temp</p>
+                                  <p class="card-text">wind</p>
+                                  <p class="card-text">Humidity</p>
+                                </div>
+                        </div>
+                        <div class="col-2">
+                       <div class="card">
+                                  <h5 class="card-title">05/06/2020</h5>
+                                  <img src="./assets/images/sun-solid.svg"
+                                  width="15%" height="15%"/>
+                                  <p class="card-text">temp</p>
+                                  <p class="card-text">wind</p>
+                                  <p class="card-text">Humidity</p>
+                                </div>
+                        </div>
+                        <div class="col-2">
+                       <div class="card">
+                                  <h5 class="card-title">05/06/2020</h5>
+                                  <img src="./assets/images/sun-solid.svg"
+                                  width="15%" height="15%"/>
+                                  <p class="card-text">temp</p>
+                                  <p class="card-text">wind</p>
+                                  <p class="card-text">Humidity</p>
+                                </div>
+                        </div>
+                        <div class="col-2">
+                       <div class="card">
+                                  <h5 class="card-title">05/06/2020</h5>
+                                  <img src="./assets/images/sun-solid.svg"
+                                  width="15%" height="15%"/>
+                                  <p class="card-text">temp</p>
+                                  <p class="card-text">wind</p>
+                                  <p class="card-text">Humidity</p>
+                                </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
