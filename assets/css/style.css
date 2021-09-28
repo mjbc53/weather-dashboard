@@ -1,37 +1,54 @@
+/* default page styling */
 *{
     padding: 0;
     margin: 0;
 }
 
+/* page body styling */
 body{
     padding: 0;
     margin: 0;
 }
 
-#header-weather{
-    background: linear-gradient(to right, #00ccff 45%,#6600ff );
-}
-
+/* h1 tag styling */
 h1{
     color: white;
 }
 
+/* label tag styling */
 label{
     font-size: 35px;
 }
 
-.bottom-border{
-    border-bottom: 3px solid grey;
-}
-
-.bottom-margin{
-    margin-bottom: 1rem;
-}
-
+/* p tag styling */
 p{
     margin: 0;
     padding: 0;
 }
 
+/* background styling for header of page */
+#header-weather{
+    background: linear-gradient(to right, #00ccff 45%,#6600ff );
+}
+
+/* style to apply a bottom border */
+.bottom-border{
+    border-bottom: 3px solid grey;
+}
+
+/* style to apply a bottom margin */
+.bottom-margin{
+    margin-bottom: 1rem;
+}
+
+/* edits or additions to bootstrap classes */
+.card-text{
+    margin-bottom: 5%;
+    
+}
+
+.card{
+    padding-left: 5% ;
+}
 
 
