@@ -7,6 +7,8 @@ var searchBtn = document.querySelector("#search-btn")
 //Current date forecast element call
 var currentDateForcast = document.querySelector("#current-date-forecast")
 
+//how to call data attributes
+var test = document.querySelector("[data-day='1']")
 
 //weather api key
 var apiKey = "5bdea9a85704cee38790f2d31b062496"
@@ -33,7 +35,7 @@ var fetchWeatherApi = function(search){
 
 
 //function to make current day display
-var currentDayDisplay = function(){
+var currentForecastDisplay = function(){
     var classes = ["col-12 border border-2 ps-2", "bottom-margin"]
     var CDFDiv = document.querySelector("#CDF-Div")
     CDFDiv.classList = classes[0]
@@ -75,6 +77,10 @@ var currentDayDisplay = function(){
 }
 
 
+var futureForecastDisplay = function(){
+
+}
+
 
 
 //when button on form is clicked get value and fetch
@@ -83,4 +89,4 @@ searchBtn.addEventListener("click",function(){
     fetchWeatherApi(searchTerm)
 })
 
-currentDayDisplay()
+currentForecastDisplay()
