@@ -7,12 +7,26 @@ var searchBtn = document.querySelector("#search-btn")
 //Current date forecast element call
 var currentDateForcast = document.querySelector("#current-date-forecast")
 
-var FFDCounter = 1
+//array to hold strings that will generate buttons for the search history
+var searchHistory = []
 
-
+var search = ""
 //weather api key
 var apiKey = "5bdea9a85704cee38790f2d31b062496"
 
+//different cards need to append infomation to 
+const cards = {
+    card1: document.querySelector("[data-day= '1']"),
+    card2: document.querySelector("[data-day= '2']"),
+    card3: document.querySelector("[data-day= '3']"),
+    card4: document.querySelector("[data-day= '4']"),
+    card5: document.querySelector("[data-day= '5']"),
+}
+
+
+var saveSearches = function(){
+    localStorage.setItem("search history", JSON.stringify(searchHistory))
+}
 
 //fetch weather api function
 var fetchWeatherApi = function(search){
@@ -81,16 +95,19 @@ var currentForecastDisplay = function(){
 
 
 var futureForecastDisplay = function(){
+    //debugger
 
     var FFHeader = document.querySelector("#FF-header")
     console.log(FFHeader)
     FFHeader.innerHTML = "<h3>5-Day Forecast</h3>"
 
-    for(var i = 0; i === 5; i++){
+    var tempArr = []
+    Object.values(cards).forEach(val => tempArr.push(val))
+    console.log(tempArr)
 
-    
-    var card = document.querySelector("[data-day= '" + FFDCounter + "']")
-    console.log(card)
+
+    for(var i = 0; i < tempArr.length; i++) {
+
     var classes = {
         cardTitle: "card-title",
         cardText: "card-text",
@@ -102,38 +119,40 @@ var futureForecastDisplay = function(){
         wind: "wind:<span data-day-wind='1'></span>",
         humidity:"Humidity:<span data-day-humidity='1'></span>",
     }
-
-    var tempDay = card
+    console.log(i)
+    console.log(tempArr[i])
+    var tempDay = tempArr[i]
+    console.log(tempDay)
     tempDay.className = "card"
+
 
     var h5 = document.createElement("h5")
     h5.classList = classes.cardTitle
     h5.textContent = "05/06/2020"
-    card.appendChild(h5)
+    tempDay.appendChild(h5)
 
 
 
     var p1 = document.createElement('p')
     p1.classList = classes.cardText
     p1.innerHTML = infoObj.temp
-    card.appendChild(p1)
+    tempDay.appendChild(p1)
     console.log(p1)
 
 
     var p2 = document.createElement('p')
     p2.classList = classes.cardText
     p2.innerHTML = infoObj.wind
-    card.appendChild(p2)
+    tempDay.appendChild(p2)
     console.log(p2)
 
 
     var p3 = document.createElement('p')
     p3.classList = classes.cardText
     p3.innerHTML = infoObj.humidity
-    card.appendChild(p3)
+    tempDay.appendChild(p3)
     console.log(p3)
 
-    FFDCounter++
     }
 }
 
@@ -142,8 +161,11 @@ var futureForecastDisplay = function(){
 //when button on form is clicked get value and fetch
 searchBtn.addEventListener("click",function(){
     var searchTerm = searchInput.value
+    console.log(searchHistory)
+    searchHistory.push(searchTerm)
+    saveSearches()
     fetchWeatherApi(searchTerm)
 })
 
-futureForecastDisplay()
-currentForecastDisplay()
+//futureForecastDisplay()
+//currentForecastDisplay()
