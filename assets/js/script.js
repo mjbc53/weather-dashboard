@@ -81,7 +81,16 @@ var currentForecastDisplay = function(){
 
 
 var futureForecastDisplay = function(){
+
+    var FFHeader = document.querySelector("#FF-header")
+    console.log(FFHeader)
+    FFHeader.innerHTML = "<h3>5-Day Forecast</h3>"
+
+    for(var i = 0; i === 5; i++){
+
+    
     var card = document.querySelector("[data-day= '" + FFDCounter + "']")
+    console.log(card)
     var classes = {
         cardTitle: "card-title",
         cardText: "card-text",
@@ -93,8 +102,9 @@ var futureForecastDisplay = function(){
         wind: "wind:<span data-day-wind='1'></span>",
         humidity:"Humidity:<span data-day-humidity='1'></span>",
     }
+
     var tempDay = card
-    tempDay.classList = "card"
+    tempDay.className = "card"
 
     var h5 = document.createElement("h5")
     h5.classList = classes.cardTitle
@@ -122,7 +132,9 @@ var futureForecastDisplay = function(){
     p3.innerHTML = infoObj.humidity
     card.appendChild(p3)
     console.log(p3)
-    
+
+    FFDCounter++
+    }
 }
 
 
