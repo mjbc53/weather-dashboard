@@ -181,9 +181,8 @@ var futureForecastDisplay = function(data){
         }
 
 
-     
         var tempDay = tempArr[i]
-        tempDay.className = "card"
+        tempDay.classList = "card bg-color text-white"
 
 
         var FFDate= document.createElement("h5")
@@ -229,11 +228,11 @@ searchBtn.addEventListener("click",function(){
     CDFDiv.innerHTML = ""
     CDFDiv.classList = ""
 
-    var tempArr = []
-    Object.values(cards).forEach(val => tempArr.push(val))
-    for(var i = 0; i < tempArr.length; i++) {
-        tempArr[i].innerHTML = ""
-    }
+    // var tempArr = []
+    // Object.values(cards).forEach(val => tempArr.push(val))
+    // for(var i = 0; i < tempArr.length; i++) {
+    //     tempArr[i].innerHTML = ""
+    // }
 
     searchTerm = searchInput.value
     console.log(searchHistory)
