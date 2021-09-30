@@ -31,15 +31,38 @@ var saveSearches = function(){
 //fetch weather api function
 var fetchWeatherApi = function(search){
 
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q="
+    var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q="
     + search
     + "&appid="
     + apiKey
 
-    fetch(apiUrl).then(function(response){
+    fetch(apiUrlCurrent).then(function(response){
         if (response.ok){
             response.json().then(function(data){
                 console.log(data)
+                var lat = data.coord.lat
+                console.log(lat)
+                var lon = data.coord.lon
+                console.log(lon)
+                
+                var apiUrlOneCall = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&exclude=minutely,hourly&lat="
+                + lat
+                +"&lon="
+                + lon
+                +"&appid="
+                +apiKey
+
+                fetch(apiUrlOneCall).then(function(response) {
+                    if(response.ok){
+                        response.json().then(function(data) {
+                            console.log(data)
+                        })
+                    }else{
+                        console.log("Error with fetch call")
+                    }
+                    
+                })
+
             })
         } else{
             console.log("Error with fetch call")
