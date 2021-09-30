@@ -43,7 +43,7 @@ var fetchWeatherApi = function(search){
     fetch(apiUrlCurrent).then(function(response){
         if (response.ok){
             response.json().then(function(data){
-                console.log(data)
+
                 var lat = data.coord.lat
                 
                 var lon = data.coord.lon
@@ -59,7 +59,7 @@ var fetchWeatherApi = function(search){
                 fetch(apiUrlOneCall).then(function(response) {
                     if(response.ok){
                         response.json().then(function(data) {
-                            console.log(data)
+
                             currentForecastDisplay(data)
                             futureForecastDisplay(data)
                         })
@@ -139,10 +139,8 @@ var currentForecastDisplay = function(data){
 
 
 var futureForecastDisplay = function(data){
-    // debugger
 
     var FFHeader = document.querySelector("#FF-header")
-    console.log(FFHeader)
     FFHeader.innerHTML = "<h3>5-Day Forecast</h3>"
 
     var tempArr = []
@@ -159,7 +157,7 @@ var futureForecastDisplay = function(data){
         var dateDay = dateFormat.getDate()
         var date = dateMonth +"/" + dateDay + "/" + dateYear
 
-        var iconId = data.daily[i].weather[0].icon
+        var iconId = data.daily[i+1].weather[0].icon
         
 
         var classes = {
@@ -228,14 +226,14 @@ searchBtn.addEventListener("click",function(){
     CDFDiv.innerHTML = ""
     CDFDiv.classList = ""
 
-    // var tempArr = []
-    // Object.values(cards).forEach(val => tempArr.push(val))
-    // for(var i = 0; i < tempArr.length; i++) {
-    //     tempArr[i].innerHTML = ""
-    // }
+    var tempArr = []
+    Object.values(cards).forEach(val => tempArr.push(val))
+    for(var i = 0; i < tempArr.length; i++) {
+        tempArr[i].innerHTML = ""
+    }
 
     searchTerm = searchInput.value
-    console.log(searchHistory)
+
     searchHistory.push(searchTerm)
     saveSearches()
     fetchWeatherApi(searchTerm)
