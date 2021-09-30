@@ -1,3 +1,5 @@
+// CDF stands for Current Date Forecaste
+// FF stands for Future Forecast
 //value for input form
 var searchInput = document.querySelector("#search-input")
 
@@ -5,20 +7,18 @@ var searchInput = document.querySelector("#search-input")
 var searchBtn = document.querySelector("#search-btn")
 
 //Current date forecast element call
-var currentDateForcast = document.querySelector("#current-date-forecast")
 var CDFDiv = document.querySelector("#CDF-Div")
 
 //array to hold strings that will generate buttons for the search history
 var searchHistory = []
 
-var search = ""
-
+// global variable to hold searched city
 var searchTerm = ""
 
 //weather api key
 var apiKey = "5bdea9a85704cee38790f2d31b062496"
 
-//different cards need to append infomation to 
+//obj with different cards are needed to append infomation to 
 const cards = {
     card1: document.querySelector("[data-day= '0']"),
     card2: document.querySelector("[data-day= '1']"),
@@ -29,7 +29,11 @@ const cards = {
 
 
 var saveSearches = function(){
-    localStorage.setItem("search history", JSON.stringify(searchHistory))
+    localStorage.setItem("search-history", JSON.stringify(searchHistory))
+}
+
+var loadSearches = function() {
+    localStorage.getItem("search-history")
 }
 
 //fetch weather api function
@@ -88,7 +92,7 @@ var currentForecastDisplay = function(data){
     }
 
     CDFDiv.classList = classes.CDFDiv
-    currentDateForcast.appendChild(CDFDiv)
+    
 
     var CDFTitle = document.createElement("h2")
     CDFTitle.classList = classes.CDFOther
@@ -239,5 +243,3 @@ searchBtn.addEventListener("click",function(){
     fetchWeatherApi(searchTerm)
 })
 
-//futureForecastDisplay()
-//currentForecastDisplay()
