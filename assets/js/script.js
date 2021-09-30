@@ -59,7 +59,9 @@ var fetchWeatherApi = function(search){
                 fetch(apiUrlOneCall).then(function(response) {
                     if(response.ok){
                         response.json().then(function(data) {
+                            console.log(data)
                             currentForecastDisplay(data)
+                            futureForecastDisplay(data)
                         })
                     }else{
                         console.log("Error with fetch call")
@@ -137,7 +139,7 @@ var currentForecastDisplay = function(data){
 
 
 var futureForecastDisplay = function(data){
-    //debugger
+    // debugger
 
     var FFHeader = document.querySelector("#FF-header")
     console.log(FFHeader)
@@ -145,16 +147,20 @@ var futureForecastDisplay = function(data){
 
     var tempArr = []
     Object.values(cards).forEach(val => tempArr.push(val))
-    console.log(tempArr)
+
 
 
     for(var i = 0; i < tempArr.length; i++) {
         var dateUnix = data.daily[i].dt
+        // convert to milliseconds
         var dateFormat = new Date(dateUnix*1000)
         var dateYear = dateFormat.getFullYear()
-        var dateMonth = dateFormat.getMonth()
-        var dateDay = dateFormat.getDay()
+        var dateMonth = dateFormat.getMonth()+1
+        var dateDay = dateFormat.getDate()
         var date = dateMonth +"/" + dateDay + "/" + dateYear
+
+        var iconId = data.daily[i].weather[0].icon
+        
 
         var classes = {
             cardTitle: "card-title",
@@ -163,45 +169,55 @@ var futureForecastDisplay = function(data){
 
 
         var infoObj ={
-            temp: "temp:<span data-day-temp='1'></span>",
-            wind: "wind:<span data-day-wind='1'></span>",
-            humidity:"Humidity:<span data-day-humidity='1'></span>",
+            temp: "Temp: <span data-day-temp='1'>"
+            + data.daily[i].temp.day 
+            +"</span> F°",
+            wind: "Wind: <span data-day-wind='1'>"
+            + data.daily[i].wind_speed
+            +"</span> MPH",
+            humidity:"Humidity: <span data-day-humidity='1'>"
+            + data.daily[i].humidity
+            +"</span> %",
         }
 
 
-        console.log(i)
-        console.log(tempArr[i])
+     
         var tempDay = tempArr[i]
-        console.log(tempDay)
         tempDay.className = "card"
 
 
-        var h5 = document.createElement("h5")
-        h5.classList = classes.cardTitle
-        h5.textContent = "05/06/2020"
-        tempDay.appendChild(h5)
+        var FFDate= document.createElement("h5")
+        FFDate.classList = classes.cardTitle
+        FFDate.textContent = date
+        tempDay.appendChild(FFDate)
 
+        var FFIcon = document.createElement("img")
+        FFIcon.src = "https://openweathermap.org/img/wn/"
+        +iconId
+        +".png"
+        FFIcon.style.width = "40%"
+        FFIcon.style.height = "40%"
+        tempDay.appendChild(FFIcon)
 
 
         var FFTemp = document.createElement('p')
         FFTemp.classList = classes.cardText
         FFTemp.innerHTML = infoObj.temp
         tempDay.appendChild(FFTemp)
-        console.log(FFTemp)
+        
 
 
         var FFWind = document.createElement('p')
         FFWind.classList = classes.cardText
         FFWind.innerHTML = infoObj.wind
         tempDay.appendChild(FFWind)
-        console.log(FFWind)
+        
 
 
         var FFHumidity = document.createElement('p')
         FFHumidity.classList = classes.cardText
         FFHumidity.innerHTML = infoObj.humidity
         tempDay.appendChild(FFHumidity)
-        console.log(FFHumidity)
 
     }
 }
@@ -213,11 +229,11 @@ searchBtn.addEventListener("click",function(){
     CDFDiv.innerHTML = ""
     CDFDiv.classList = ""
 
-    // var tempArr = []
-    // Object.values(cards).forEach(val => tempArr.push(val))
-    // for(var i = 0; i < tempArr.length; i++) {
-    //     tempArr[i].innerHTML = ""
-    // }
+    var tempArr = []
+    Object.values(cards).forEach(val => tempArr.push(val))
+    for(var i = 0; i < tempArr.length; i++) {
+        tempArr[i].innerHTML = ""
+    }
 
     searchTerm = searchInput.value
     console.log(searchHistory)
