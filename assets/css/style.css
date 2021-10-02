@@ -66,5 +66,28 @@ p{
 }
 
 
+/* uv index scale colors */
+#uvindex{
+    padding: 0 5px 0 5px;
+
+}
+.low{
+    background-color: #33ff33;
+    border-radius: .25rem;
+}
+.medium{
+    background-color: #ffff1a ;
+    border-radius: .25rem;
+}
+.high{
+    background-color: #ff9900;
+    border-radius: .25rem;
+}
+.veryhigh{
+    background-color: #ff1a1a;
+    border-radius: .25rem;
+}
+
+
 
 

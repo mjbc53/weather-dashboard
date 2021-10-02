@@ -199,13 +199,32 @@ var currentForecastDisplay = function(data){
     CDFDiv.appendChild(CDFHumidity)
    
     
+    
     // create p tag for UV index info
     var CDFUVIndex = document.createElement("p")
     CDFUVIndex.classList = classes.CDFOther
-    CDFUVIndex.innerHTML = "UV Index: "
+    CDFUVIndex.innerHTML = "UV Index: <span id='uvindex'>"
     // data call from fetch
     + data.current.uvi
+    +"</span>"
     CDFDiv.appendChild(CDFUVIndex)
+
+    //apply color to uv index
+    //get uv index
+    var uvIndex = data.current.uvi
+    console.log(uvIndex)
+    //call span with uv index
+    var spanUV = document.querySelector("#uvindex")
+    // if function to check uv and add color to uv index on page
+    if(uvIndex>0&& uvIndex<=2){
+        spanUV.className = "low"
+    }else if(uvIndex>=2&&uvIndex<=5){
+        spanUV.className = "medium"
+    }else if(uvIndex>=6&&uvIndex<=7){
+        spanUV.className = "high"
+    }else if(uvIndex>=8){
+        spanUV.className = "veryhigh"
+    }
 
 }
 
