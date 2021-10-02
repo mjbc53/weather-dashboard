@@ -28,6 +28,8 @@ elements to the page.
 * [Github Repo](https://github.com/mjbc53/weather-dashboard)
 
 ## Page screenshots
+<img src="./assets/pagescreenshots/screenshot-1.png" width="50%" hieght="50%">
+<img src="./assets/pagescreenshots/screenshot-2.png" width="50%" hieght="50%">
 
 
 ## Contact
