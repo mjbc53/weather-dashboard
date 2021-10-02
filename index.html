@@ -16,7 +16,7 @@
 </head>
 <body>
     <main>
-
+        <!--Header of the page-->
         <header id="header-weather">
             <div class="container g-0">
                 <div class="row g-0 ">
@@ -35,6 +35,7 @@
                 <!-- Search form start -->
                 <form class="col-3 " id="search-form">
                     <div class="bottom-margin bottom-border">
+                        <!-- label for input input-->
                         <label for="search-name" class="col-12 mb-3">Search for a City:</label>
                         <input class="mb-3 form-control" type="text" id="search-input" name="search-name">
                         <button type="button" id="search-btn" class="col-12 btn
@@ -45,23 +46,24 @@
                 
 
                 <!-- display search city start-->
-                <!-- CDF stands for current date forecast -->
+                <!-- Div to display data about current day-->
+                <!-- abbreviation CDF stands for current date forecast -->
                 <div class="col-9" id="current-date-forecast">
                     <div  id="CDF-Div">
-
                     </div>
                 </div>
                 <!-- display search city end -->
 
+
                 <!-- Button history start -->
+                <!-- Div to display buttons with previous searches-->
                 <div class="col-3 mt-2" id="history">
-                    <!-- <button type="button" class="col-12 btn btn-secondary btn-sm
-                    mb-2">test</button> -->
                 </div>
                 <!-- Button history end -->
 
                 <!-- 5 day forecast start -->
-                <!-- FF stands for Future Forecast -->
+                <!-- Div to display future days on bootstrap cards -->
+                <!-- abbreviation FF stands for Future Forecast -->
                 <div class="col-9" id="future-forecast">
                     <div class="row d-flex justify-content-between g-1">
                         <!-- header start -->
@@ -73,7 +75,6 @@
                         <!-- day 1 start-->
                         <div class="col-2 g-0" >
                             <div data-day="0">
-                  
                             </div>
                         </div>
                         <!-- day 1 end -->
@@ -81,7 +82,6 @@
                         <!-- day 2 start-->
                         <div class="col-2 g-0">
                             <div data-day="1">
-                        
                             </div>
                         </div>
                         <!-- day 2 end -->
@@ -89,7 +89,6 @@
                         <!-- day 3 start -->
                         <div class="col-2 g-0">
                             <div data-day="2">
-                      
                             </div>
                         </div>
                         <!-- day 3 end -->
@@ -97,7 +96,6 @@
                         <!-- day 4 start-->
                         <div class="col-2 g-0">
                             <div data-day="3">
-                       
                             </div>
                         </div>
                         <!-- day 4 end -->

@@ -1,3 +1,6 @@
+/*abbreviations*/
+/* CDF stands for current date forecast */
+
 /* default page styling */
 *{
     padding: 0;
@@ -31,6 +34,16 @@ p{
     background: linear-gradient(to right, #00ccff 45%,#6600ff );
 }
 
+/* background color for cards */
+.bg-color-card{
+    background-color: #0099CC;
+}
+
+/* background color for CDF */
+.bg-color-CDF{
+    background-color: #d1e0e0;
+}
+
 /* style to apply a bottom border */
 .bottom-border{
     border-bottom: 3px solid grey;
@@ -42,22 +55,16 @@ p{
 }
 
 /* edits or additions to bootstrap classes */
+/* card-text class edit to bottom margin */
 .card-text{
     margin-bottom: 5%;
-    
 }
 
+/* card class edit to padding left */
 .card{
     padding-left: 5% ;
 }
 
-/* background color for cards */
-.bg-color-card{
-    background-color: #0099CC;
-}
 
-.bg-color-CDF{
-    background-color: #d1e0e0;
-}
 
 
