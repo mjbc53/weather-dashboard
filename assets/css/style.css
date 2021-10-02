@@ -52,8 +52,12 @@ p{
 }
 
 /* background color for cards */
-.bg-color{
+.bg-color-card{
     background-color: #0099CC;
+}
+
+.bg-color-CDF{
+    background-color: #d1e0e0;
 }
 
 

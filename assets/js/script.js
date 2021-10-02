@@ -9,12 +9,14 @@ var searchBtn = document.querySelector("#search-btn")
 //Current date forecast element call
 var CDFDiv = document.querySelector("#CDF-Div")
 
+var historyDiv = document.querySelector("#history")
+
 //array to hold strings that will generate buttons for the search history
 var searchHistory = []
-
 // global variable to hold searched city
 var searchTerm = ""
 
+var date = ""
 //weather api key
 var apiKey = "5bdea9a85704cee38790f2d31b062496"
 
@@ -27,13 +29,41 @@ const cards = {
     card5: document.querySelector("[data-day= '4']"),
 }
 
+var createButton = function(index) {
+    var btn = document.createElement("button")
+    btn.setAttribute("type","button")
+    btn.setAttribute("id", index)
+    btn.classList = ("col-12 btn btn-secondary btn-sm mb-3")
+    btn.textContent = index
+    console.log(btn)
+
+    historyDiv.appendChild(btn)
+}
+
+var convertDate = function(unixDate) {
+    var dateFormat = new Date(unixDate*1000)
+    var dateYear = dateFormat.getFullYear()
+    var dateMonth = dateFormat.getMonth()+1
+    var dateDay = dateFormat.getDate()
+    date = dateMonth +"/" + dateDay + "/" + dateYear
+
+}
 
 var saveSearches = function(){
     localStorage.setItem("search-history", JSON.stringify(searchHistory))
 }
 
+
+
 var loadSearches = function() {
-    localStorage.getItem("search-history")
+    var history = JSON.parse(localStorage.getItem("search-history"))
+
+    if(!searchHistory){
+        searchHistory = []
+    }else{
+        history.forEach(index => createButton(index))
+    }
+
 }
 
 //fetch weather api function
@@ -63,7 +93,7 @@ var fetchWeatherApi = function(search){
                 fetch(apiUrlOneCall).then(function(response) {
                     if(response.ok){
                         response.json().then(function(data) {
-
+                            console.log(data)
                             currentForecastDisplay(data)
                             futureForecastDisplay(data)
                         })
@@ -83,17 +113,21 @@ var fetchWeatherApi = function(search){
 
 //function to make current day display
 var currentForecastDisplay = function(data){
+    var unixDate= data.current.dt
+    convertDate(unixDate)
+
     var iconId = data.current.weather[0].icon
 
 
     var classes = {
-        CDFDiv: "col-12 border border-2 ps-2",
+        CDFDiv: "col-12 border border-2 border-dark rounded ps-2 bg-color-CDF ",
         CDFOther: "bottom-margin",
     }
 
     CDFDiv.classList = classes.CDFDiv
     
 
+    
     var CDFTitle = document.createElement("h2")
     CDFTitle.classList = classes.CDFOther
     
@@ -101,6 +135,7 @@ var currentForecastDisplay = function(data){
     + "<img src='https://openweathermap.org/img/wn/"
     + iconId
     +".png'/>"
+    + date
     CDFDiv.appendChild(CDFTitle)
    
 
@@ -153,13 +188,10 @@ var futureForecastDisplay = function(data){
 
 
     for(var i = 0; i < tempArr.length; i++) {
-        var dateUnix = data.daily[i].dt
-        // convert to milliseconds
-        var dateFormat = new Date(dateUnix*1000)
-        var dateYear = dateFormat.getFullYear()
-        var dateMonth = dateFormat.getMonth()+1
-        var dateDay = dateFormat.getDate()
-        var date = dateMonth +"/" + dateDay + "/" + dateYear
+        var unixDate = data.daily[i+1].dt
+        
+        convertDate(unixDate)
+
 
         var iconId = data.daily[i+1].weather[0].icon
         
@@ -184,7 +216,7 @@ var futureForecastDisplay = function(data){
 
 
         var tempDay = tempArr[i]
-        tempDay.classList = "card bg-color text-white"
+        tempDay.classList = "card bg-color-card text-white"
 
 
         var FFDate= document.createElement("h5")
@@ -240,6 +272,26 @@ searchBtn.addEventListener("click",function(){
 
     searchHistory.push(searchTerm)
     saveSearches()
+    createButton(searchTerm)
     fetchWeatherApi(searchTerm)
 })
 
+historyDiv.addEventListener("click",function(event) {
+    var clicked = event.target.getAttribute("id")
+
+    CDFDiv.innerHTML = ""
+    CDFDiv.classList = ""
+
+    var tempArr = []
+    Object.values(cards).forEach(val => tempArr.push(val))
+    for(var i = 0; i < tempArr.length; i++) {
+        tempArr[i].innerHTML = ""
+    }
+    
+    if(clicked){
+        searchTerm = clicked
+        fetchWeatherApi(clicked)
+    }
+})
+
+loadSearches()
