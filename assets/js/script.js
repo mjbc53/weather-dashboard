@@ -76,7 +76,7 @@ var loadSearches = function() {
     var history = JSON.parse(localStorage.getItem("search-history"))
 
     // if null set search history to empty
-    if(!searchHistory){
+    if(!history){
         searchHistory = []
     }else{
         // index through each item in array and create buttons for search history
